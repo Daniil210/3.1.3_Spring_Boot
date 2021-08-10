@@ -31,7 +31,7 @@ class ApplicationTests {
         Role role1 = new Role("ROLE_ADMIN");
         Role role2 = new Role("ROLE_USER");
 
-		user1.getRoles().add(role2);
+		user1.getRoles().add(role1);
 		//user1.setId(1l);
 		//user2.getRoles().add(role2);
 		//user2.getRoles().add(role1);

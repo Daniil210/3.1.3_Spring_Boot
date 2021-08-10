@@ -1,4 +1,3 @@
-<!--
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -9,8 +8,6 @@
 <table border="1">
 <tr>
     <th>ID</th>
-    <th>Fist Name</th>
-    <th>Last Name</th>
     <th>Email</th>
     <th>Password</th>
     <th>Roles</th>
@@ -18,8 +15,6 @@
 </tr>
 <tr>
     <td th:utext="${one_user.getId()}">..</td>
-    <td th:utext="${one_user.getFirstName()}">..</td>
-    <td th:utext="${one_user.getLastName()}">..</td>
     <td th:utext="${one_user.getEmail()}">..</td>
     <td th:utext="${one_user.getPassword()}">..</td>
     <td th:utext="${one_user.getRoles()}">..</td>
@@ -31,4 +26,4 @@
 </form>
 
 </body>
-</html>-->
+</html>

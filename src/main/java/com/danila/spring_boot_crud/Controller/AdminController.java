@@ -18,19 +18,19 @@ import java.util.List;
 @Controller
 @AllArgsConstructor
 @Log
-//@RequestMapping("/admin")
-public class UsersController {
+@RequestMapping("/admin")
+public class AdminController {
 
     private final UserService userService;
 
 
-    @GetMapping(value = "/admin/users")
+    @GetMapping(value = "/users")
     public String listUsers(Model model ) {
         model.addAttribute("listUsers", userService.findAll());
         return "user";
     }
 
-    @GetMapping("/admin/user-create")
+    @GetMapping("/user-create")
     public String createUserForm(User user) {
         return "user-create";
     }
@@ -41,13 +41,13 @@ public class UsersController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/admin/user-delete/{id}")
+    @GetMapping("/user-delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/admin/user-update/{id}")
+    @GetMapping("/user-update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute(user);
@@ -60,13 +60,7 @@ public class UsersController {
         return "redirect:/admin/users";
     }
 
-    /*@GetMapping("/one_user")
-    public String getMainUser(Model model, Principal principal) {
-        System.out.println(principal.getName());
-        model.addAttribute("one_user",userService.findByEmail(principal.getName()));
-        //model.addAttribute("one_user",userService.getUserByEmail(((User) authentication.getPrincipal()).getEmail()));
-        return "one_user";
-    }*/
+
 }
 
 /*@RestController
