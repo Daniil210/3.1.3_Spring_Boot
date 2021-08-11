@@ -26,8 +26,8 @@ class ApplicationTests {
 		UserDao userService = context.getBean(UserDao.class);*/
 
 
-        User user1 = new User("naaasos", "laaaas");
-        User user2 = new User("aaa", "aaa");
+        User user1 = new User("naaasos", "laaaas", 32,"asaf@s", "adasf");
+		User user2 = new User("naaasos", "laaaas", 32,"asaf@a", "adasf");
         Role role1 = new Role("ROLE_ADMIN");
         Role role2 = new Role("ROLE_USER");
 

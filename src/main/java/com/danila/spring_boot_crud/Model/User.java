@@ -24,10 +24,10 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(nullable = false)
-    private String firstName;
+    private String name;
 
     @Column(nullable = false)
-    private String lastName;
+    private String surname;
 
     @Column(nullable = false)
     private Integer age;
@@ -41,9 +41,20 @@ public class User implements UserDetails {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
-    public User(String email, String password) {
+    public User(String name, String surname, Integer age, String email, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
         this.email = email;
         this.password = password;
+    }
+
+    public boolean checkAdmin() {
+        return this.roles.toString().contains("ADMIN");
+    }
+
+    public boolean checkUser() {
+        return this.roles.toString().contains("USER");
     }
 
     @Override
