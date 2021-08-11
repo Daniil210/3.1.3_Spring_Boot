@@ -2,20 +2,101 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <title>All User</title>
 </head>
 <body>
+<div class="container-fluid bg-dark">
+    <div class="pt-2">  </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="h4" style="color: white" valign="center" align="left">
+                &nbsp;&nbsp;&nbsp;
+                <span class="font-weight-bold" th:utext="${one_user.getEmail()} + ' '">
+                                </span>
+                with roles:&nbsp;
+                <span th:each="roleInList, iStat : ${one_user.getRoles()}"
+                      th:text="!${iStat.last} ?
+                                (${#strings.substring(roleInList.role,5)} + ' ')
+                                : (${#strings.substring(roleInList.role,5)})">
+                                </span>
+            </p>
+        </div>
+
+        <div class="col-lg-6">
+            <p class="h5" style="color: white" valign="center" align="right">
+                <a style="color: darkgray" th:href="@{/logout}">Logout &nbsp;</a>
+            </p>
+        </div>
+    </div>
+    <div class="pt-2">  </div>
+</div>
+
+<!--============================================================-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!--============ left panel ============-->
+
+        <div class="col-lg-2 px-0">
+            <div>
+                <br>
+                <ul class="list-group">
+
+                    <li type="button" onclick="location.href='/admin'" class="list-group-item active" >Admin</li>
+                    <li type="button" onclick="location.href='/user'" class="list-group-item" >User</li>
+
+                </ul>
+            </div>
+        </div>
+
+        <!--============ right body ============-->
+        <div class="col-lg-10 bg-light">
+            <div class="container-fluid vh-100">
+
+                <div class="pt-2">  </div>
+                <p class="h1" valign="center" align="left"> Admin panel </p>
+                <div class="pt-2">  </div>
+
+                <!--============ nav - tabs ============-->
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Users table</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">New User</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
 <div th:switch="${listUsers}">
     <h2 th:case="null">No users found!</h2>
     <div th:case="*">
-        <h2>Users</h2>
+        <h2>Admin panel</h2>
         <table border="1">
             <thead>
             <tr>
                 <th>Id</th>
                 <th>First name</th>
                 <th>Last name</th>
+                <th>Age</th>
                 <th>Email</th>
                 <th>Password</th>
                 <th>Roles</th>
@@ -24,6 +105,9 @@
             <tbody>
             <tr th:each="user : ${listUsers}">
                 <td th:text="${user.id}"></td>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.age}"></td>
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.password}"></td>
                 <td th:text="${user.roles}"></td>
@@ -36,10 +120,10 @@
     <p><a href="/admin/user-create">Create user</a></p>
 </div>
 
-<br>
-<form th:action="@{/logout}">
-    <input type="submit" value="LOGOUT"/>
-</form>
-
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

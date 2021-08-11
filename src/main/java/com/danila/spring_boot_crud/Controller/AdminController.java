@@ -25,7 +25,8 @@ public class AdminController {
 
 
     @GetMapping(value = "/users")
-    public String listUsers(Model model ) {
+    public String listUsers(Model model, Principal principal ) {
+        model.addAttribute("one_user",userService.findByEmail(principal.getName()));
         model.addAttribute("listUsers", userService.findAll());
         return "user";
     }
