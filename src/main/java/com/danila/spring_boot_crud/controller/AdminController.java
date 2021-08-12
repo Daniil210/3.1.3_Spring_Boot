@@ -1,10 +1,11 @@
-package com.danila.spring_boot_crud.Controller;
+package com.danila.spring_boot_crud.controller;
 
 
-import com.danila.spring_boot_crud.Model.User;
-import com.danila.spring_boot_crud.Service.UserService;
+import com.danila.spring_boot_crud.dto.UsersDto;
+import com.danila.spring_boot_crud.exception_handling.ValidationException;
+import com.danila.spring_boot_crud.model.User;
+import com.danila.spring_boot_crud.service.UserService;
 import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,7 +32,7 @@ public class AdminController {
 
 
     @PostMapping("/admin")
-    public String createUser(@ModelAttribute("person") @Valid User user, BindingResult bindingResult)  {
+    public String createUser(@ModelAttribute("person") @Valid UsersDto user, BindingResult bindingResult) throws ValidationException {
 
         if (bindingResult.hasErrors()) {
             return "admin";
@@ -49,8 +50,8 @@ public class AdminController {
 
 
     @PostMapping("admin/{id}")
-    public String updateUser(@ModelAttribute("person") @Valid User user, BindingResult bindingResult,
-                             @PathVariable("id") Long id) {
+    public String updateUser(@ModelAttribute("person") @Valid UsersDto user, BindingResult bindingResult,
+                             @PathVariable("id") Long id) throws ValidationException {
         if (bindingResult.hasErrors()) {
             return "/admin/{id}";
         }

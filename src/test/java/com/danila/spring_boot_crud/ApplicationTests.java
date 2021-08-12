@@ -1,13 +1,14 @@
+/*
 package com.danila.spring_boot_crud;
 
-import com.danila.spring_boot_crud.Dao.UserDao;
-import com.danila.spring_boot_crud.Model.Role;
-import com.danila.spring_boot_crud.Model.User;
-import com.danila.spring_boot_crud.Service.UserService;
+import com.danila.spring_boot_crud.dto.UsersDto;
+import com.danila.spring_boot_crud.exception_handling.ValidationException;
+import com.danila.spring_boot_crud.model.Role;
+import com.danila.spring_boot_crud.model.User;
+import com.danila.spring_boot_crud.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @SpringBootTest
 class ApplicationTests {
@@ -20,13 +21,15 @@ class ApplicationTests {
 	}
 
 	@Test
-	public void Testing() {
-		/*AnnotationConfigApplicationContext context =
+	public void Testing() throws ValidationException {
+		*/
+/*AnnotationConfigApplicationContext context =
 				new AnnotationConfigApplicationContext(AppConfig.class);
-		UserDao userService = context.getBean(UserDao.class);*/
+		UserDao userService = context.getBean(UserDao.class);*//*
 
 
-        User user1 = new User("naaasos", "laaaas", 32,"asaf@s", "adasf");
+
+        UsersDto user1 = new UsersDto("naaasos", "laaaas", 32,"asaf@s", "adasf");
 		User user2 = new User("naaasos", "laaaas", 32,"asaf@a", "adasf");
         Role role1 = new Role("ROLE_ADMIN");
         Role role2 = new Role("ROLE_USER");
@@ -43,3 +46,4 @@ class ApplicationTests {
 	}
 
 }
+*/

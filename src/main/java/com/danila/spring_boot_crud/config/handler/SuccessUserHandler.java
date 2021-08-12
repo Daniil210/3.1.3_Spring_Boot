@@ -1,4 +1,4 @@
-package com.danila.spring_boot_crud.Config.Handler;
+package com.danila.spring_boot_crud.config.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
