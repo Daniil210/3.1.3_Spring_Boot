@@ -36,7 +36,7 @@ public class UsersConverter {
                 .build();
     }
 
-    public Role formRoleDtoToRole(RoleDto roleDto) {
+    /*public Role formRoleDtoToRole(RoleDto roleDto) {
         Role role =new Role();
         role.setId(roleDto.getId());
         role.setRole(roleDto.getRole());
@@ -48,6 +48,38 @@ public class UsersConverter {
                 .id(role.getId())
                 .role(role.getRole())
                 .build();
+    }*/
+
+    /*public User fromUserDtoToUser(UsersDto usersDto) {
+        User users = new User();
+        users.setId(usersDto.getId());
+        users.setName(usersDto.getName());
+        users.setSurname(usersDto.getSurname());
+        users.setEmail(usersDto.getEmail());
+        users.setPassword(usersDto.getPassword());
+        users.setAge(usersDto.getAge());
+
+
+        users.setRoles(usersDto.getRoles()
+                .stream()
+                .map(new UsersConverter()::formRoleDtoToRole)
+                .collect(Collectors.toSet()));
+
+        return users;
     }
+
+    public UsersDto fromUserToUserDto(User users) {
+        return UsersDto.builder()
+                .id(users.getId())
+                .name(users.getName())
+                .surname(users.getSurname())
+                .email(users.getEmail())
+                .age(users.getAge())
+                .password(users.getPassword())
+                .roles(users.getRoles().stream()
+                        .map(new UsersConverter()::formRoleToRoleDto)
+                        .collect(Collectors.toSet()))
+                .build();
+    }*/
 
 }
