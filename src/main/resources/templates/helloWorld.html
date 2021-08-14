@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+
+<h1>Hello World</h1>
+
+<!--<table class="table table-striped">
+    <tbody id="dataS">
+
+    </tbody>
+
+</table>-->
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+
+            <div id="user-table-list">
+
+                <!-- ============ insert FETCH USER TABLE ============== -->
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--<script>
+    let output2 = '';
+
+    const renderUserTable = (user) => {
+        console.log("7th")
+        console.log(user)
+        output2 += `
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.surname}</td>
+                    <td>${user.age}</td>
+                    <td>${user.email}</td>
+                    <td>`
+        user.roles.forEach(val => {
+            console.log(val)
+            output2 += `${val.role.substring(5)}`
+        })
+
+        output2 += `
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        `
+
+        document.getElementById('user-table-list').innerHTML = output2;
+    }
+
+
+    fetch("api/usersFetch")
+        .then(res => res.json())
+        .then(data => renderUserTable(data))
+</script>-->
+
+
+
+<!--<script>
+    fetch("api/users").then(
+        res=>{
+            res.json().then(
+                data => {
+                    console.log(data);
+                    if (data.length > 0){
+                        let temp= "";
+
+                        //star for loop
+                        data.forEach((u) =>{
+                            temp += "<tr>";
+                            temp += "<td>" + u.id + "</td>";
+                            temp += "<td>" + u.name + "</td>";
+                            temp += "<td>" + u.surname + "</td>";
+                            temp += "<td>" + u.age + "</td>";
+                            temp += "<td>" + u.email + "</td>";
+                            temp += "<td>" + u.password + "</td>";
+                            temp += "<td>" + u.roles + "</td>";
+                        })
+
+                        //closer for loop
+
+                        document.getElementById("dataS").innerHTML = temp;
+                    }
+                }
+            )
+        }
+    )
+</script>-->
+
+
+
+<script src="/user.js"></script>
+
+
+
+</body>
+</html>

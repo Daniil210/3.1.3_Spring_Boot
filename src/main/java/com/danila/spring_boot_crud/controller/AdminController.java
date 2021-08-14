@@ -74,4 +74,8 @@ public class AdminController {
     }
 
 
+    @GetMapping("/hello")
+    public String helloWorld(){
+        return "helloWorld";
+    }
 }

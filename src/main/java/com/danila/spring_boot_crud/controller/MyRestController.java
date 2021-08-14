@@ -8,6 +8,7 @@ import com.danila.spring_boot_crud.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -35,6 +36,12 @@ public class MyRestController {
         }
         return user;
     }
+    @GetMapping("/usersFetch")
+    public UsersDto getUserFetch(Principal principal){
+
+        return userService.findByEmail(principal.getName());
+    }
+
 
     @PostMapping("/users")
     public UsersDto addNewUser(@RequestBody UsersDto user) throws ValidationException {
