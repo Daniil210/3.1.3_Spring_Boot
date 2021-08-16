@@ -50,10 +50,10 @@ public class MyRestController {
         return user;
     }
 
-    @PutMapping("/users")
-    public UsersDto updateUser(@RequestBody UsersDto user) throws ValidationException {
+    @PutMapping("/users/{id}")
+    public UsersDto updateUser(@RequestBody UsersDto user, @PathVariable Long id) throws ValidationException {
 
-        userService.saveUser(user);
+        userService.update(user, id);
         return user;
     }
 
