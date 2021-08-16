@@ -1,5 +1,6 @@
-// ================================================ FETCH MAIN TABLE ================================================
+// ================================================ FETCH MAIN TABLE ===================================================
 
+// const mainTableList = document.querySelector('.main-table-list');
 const mainTableList = document.querySelector('.main-table-list');
 let outputAll = '';
 
@@ -62,7 +63,7 @@ const renderMainTable = (data) => {
         </table>
         `
 
-    // document.getElementById('main-table-list').innerHTML = outputAll;
+    //document.getElementById('main-table-list').innerHTML = outputAll;
     mainTableList.innerHTML = outputAll;
 }
 
@@ -71,148 +72,10 @@ fetch("api/users")
     .then(res => res.json())
     .then(data => renderMainTable(data))
 
-// ================================================ FETCH MAIN TABLE ================================================
-
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// ================================================ FETCH USER TABLE ================================================
-
-// const mainTableList = document.querySelector('.main-table-list');
-/*let outputOne = '';
-
-const renderUserTable = (user) => {
-    console.log("7th")
-    outputOne += `
-        <table class="table table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Age</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-
-            <tbody>
-              
-                <tr>
-                    <td>${user.id}</td>
-                    <td>${user.name}</td>
-                    <td>${user.surname}</td>
-                    <td>${user.age}</td>
-                    <td>${user.email}</td>
-                    <td>`
-                    user.roles.forEach(val => {
-                        console.log(val)
-                        outputOne += `
-                        ${val.role.substring(5)}
-                        `
-                    })
-
-                    outputOne += `
-                    </td>
-                </tr>                
-            </tbody>
-
-        </table>
-        `
-
-    document.getElementById('user-table-list').innerHTML = outputOne;
-}
+// ================================================ FETCH MAIN TABLE ===================================================
 
 
-fetch("api/findlogged")
-    .then(res => res.json())
-    .then(data => renderUserTable(data))*/
-
-// ================================================ FETCH USER TABLE ================================================
-
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// ================================================ ADD USER TABLE ================================================
-
-const addUserForm = document.querySelector('.add-user-form');
-const nameNew = document.getElementById('nameNew');
-const surnameNew = document.getElementById('surnameNew');
-const ageNew = document.getElementById('ageNew');
-const emailNew = document.getElementById('emailNew');
-const passwordNew = document.getElementById('passwordNew');
-const rolesNew = $('#rolesNew');
-
-
-document.getElementById('profile-tab').addEventListener('click', (e) => {
-    e.preventDefault();
-
-    console.log('clear form - OK!')
-
-    document.getElementById('nameNew').value = "";
-    document.getElementById('surnameNew').value = "";
-    document.getElementById('ageNew').value = "";
-    document.getElementById('emailNew').value = "";
-    document.getElementById('passwordNew').value = "";
-    document.getElementById('passwordNew').value = "";
-    const selectNew = document.getElementById('rolesNew').getElementsByTagName('option');
-    selectNew[0].selected = false;
-    selectNew[1].selected = false;
-
-})
-
-
-
-addUserForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-
-    // console.log('options -- ', rolesNew.options)
-
-    const values = rolesNew.val();
-
-
-    // console.log('roles -', rolesNew.value)
-    //
-    // console.log('values', values)
-    // console.log('formdata - ', formData.get("roles"))
-
-    fetch("api/users", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json; charset=utf-8'
-        },
-        // body: formData
-        body: JSON.stringify({
-            name: nameNew.value,
-            surname: surnameNew.value,
-            age: ageNew.value,
-            email: emailNew.value,
-            password: passwordNew.value,
-            roles: values
-        })
-    })
-        .then(() => {
-            mainTableList.innerHTML = "";
-            outputAll = "";
-
-            fetch("api/users")
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    return renderMainTable(data)
-                });
-        })
-
-    document.getElementById('home-tab').click();
-
-
-
-})
-
-// ================================================ ADD USER TABLE ================================================
-
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// ================================================ MODAL EDIT/DELETE TABLE ================================================
+// ================================================ MODAL EDIT/DELETE TABLE ============================================
 
 // const mainTableList = document.querySelector('.main-table-list');
 const modalEdit = document.querySelector('.modal-edit-form');
@@ -222,9 +85,6 @@ const modalBtnDeleteSubmit = document.getElementById('delete-inside-modal')
 
 const rolesEdit = $('#rolesEdit');
 
-// const rolesEdit = $('#rolesEdit');
-// const rolesDelete = $('#rolesDelete');
-
 let deleteId
 let editId
 
@@ -233,8 +93,6 @@ mainTableList.addEventListener('click', (e) => {
 
     let editButtonIsPressed = e.target.id === 'edit-user'
     let deleteButtonIsPressed = e.target.id === 'delete-user'
-
-
 
     const parent = e.target.parentElement.parentElement
     // let userId = e.target.parentElement.dataset.id
@@ -278,36 +136,26 @@ mainTableList.addEventListener('click', (e) => {
         console.log("typeof editRoles", typeof editRoles)
 
         console.log('split = ', editRoles.split(' '))
-
         console.log('clean = ', editRoles.replace(/ /g,''))
 
         const select = document.getElementById('rolesEdit').getElementsByTagName('option');
-        // if (select[i].value === 'Терпила') select[i].selected = true;
-
-        // select[0].selected = true;
-        // select[1].selected = true;
 
         let rolesForUser = 0;
 
-        // const arrayOfRoles = editRoles.trim().split(' ');
-        // const arrayOfRoles = editRoles.replace(/ /g,'').split(' ');
-        const arrayOfRoles = editRoles.replace(/\r?\n|\r/g, ' ').trim().split(' ');
+        //const arrayOfRoles = editRoles.replace(/\r?\n|\r/g, ' ').trim().split(' ');
+        const arrayOfRoles = editRoles.split(' ');
 
         for(let i of arrayOfRoles) {
-            if (i === 'ADMIN') {
+            if (i.includes('ADMIN')) {
                 select[0].selected = true;
-                // rolesForUser = rolesForUser + 1;
-            } else if (i === 'USER') {
+            } else if (i.includes('USER')) {
                 select[1].selected = true;
-                // rolesForUser = rolesForUser + 1;
             }
         }
-
         console.log("arrayOfRoles - ", arrayOfRoles)
-
         console.log("rolesForUser = ", rolesForUser)
-
     }
+
 
     if(deleteButtonIsPressed) {
 
@@ -352,8 +200,7 @@ function watchModalEdit(e) {
 
 
 
-        fetch(`/api/users/${insideEditId}`, {
-        // fetch(`/api/users`, {
+        fetch(`/api/users`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -371,8 +218,6 @@ function watchModalEdit(e) {
             .then(() => {
                 mainTableList.innerHTML = "";
                 outputAll = "";
-
-
 
                 fetch("api/users")
                     .then(res => res.json())
@@ -410,12 +255,79 @@ function watchModalDelete(e) {
         })
             .then(() => {
                 document.getElementById('row-user-'+insideDeleteId).innerHTML = "";
-                // modalDelete.removeEventListener('click', watchModalDelete())
             })
 
     }
 
 // ------------------- modalDeleteListener end -------------------
 }
+// ================================================ MODAL EDIT/DELETE TABLE ============================================
 
-// ================================================ MODAL EDIT/DELETE TABLE ================================================
+// ================================================ ADD USER TABLE =====================================================
+
+const addUserForm = document.querySelector('.add-user-form');
+const nameNew = document.getElementById('nameNew');
+const surnameNew = document.getElementById('surnameNew');
+const ageNew = document.getElementById('ageNew');
+const emailNew = document.getElementById('emailNew');
+const passwordNew = document.getElementById('passwordNew');
+const rolesNew = $('#rolesNew');
+
+
+console.log('1---------------------------------------------------------------------------------')
+console.log(rolesNew.val())
+
+document.getElementById('profile-tab').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    console.log('clear form - OK!')
+
+    document.getElementById('nameNew').value = "";
+    document.getElementById('surnameNew').value = "";
+    document.getElementById('ageNew').value = "";
+    document.getElementById('emailNew').value = "";
+    document.getElementById('passwordNew').value = "";
+    document.getElementById('passwordNew').value = "";
+    const selectNew = document.getElementById('rolesNew').getElementsByTagName('option');
+    selectNew[0].selected = false;
+    selectNew[1].selected = false;
+
+})
+addUserForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+
+    const values = rolesNew.val();
+
+
+    fetch("api/users", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+        },
+        // body: formData
+        body: JSON.stringify({
+            name: nameNew.value,
+            surname: surnameNew.value,
+            age: ageNew.value,
+            email: emailNew.value,
+            password: passwordNew.value,
+            roles: values
+        })
+    })
+        .then(() => {
+            mainTableList.innerHTML = "";
+            outputAll = "";
+
+            fetch("api/users")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    return renderMainTable(data)
+                });
+        })
+
+    document.getElementById('home-tab').click();
+
+})
+// ================================================ ADD USER TABLE =====================================================

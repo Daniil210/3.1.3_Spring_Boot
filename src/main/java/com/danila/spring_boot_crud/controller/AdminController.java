@@ -72,10 +72,4 @@ public class AdminController {
     public String loginPage() {
         return "login";
     }
-
-
-    @GetMapping("/hello")
-    public String helloWorld(){
-        return "helloWorld";
-    }
 }

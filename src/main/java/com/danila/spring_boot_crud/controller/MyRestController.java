@@ -57,6 +57,13 @@ public class MyRestController {
         return user;
     }
 
+    @PutMapping("/users")
+    public UsersDto updateUsers(@RequestBody UsersDto user) throws ValidationException {
+
+        userService.saveUser(user);
+        return user;
+    }
+
     @DeleteMapping("/users/{id}")
     public String deleteUser(@PathVariable Long id) {
 
