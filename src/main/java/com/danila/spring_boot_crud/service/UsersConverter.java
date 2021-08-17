@@ -1,6 +1,6 @@
 package com.danila.spring_boot_crud.service;
 
-import com.danila.spring_boot_crud.dto.RoleDto;
+
 import com.danila.spring_boot_crud.dto.UsersDto;
 import com.danila.spring_boot_crud.model.Role;
 import com.danila.spring_boot_crud.model.User;
